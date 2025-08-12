@@ -9,19 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "fluent-ffmpeg": "^2.1.3",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.539.0",
+    "music-metadata": "^11.7.3",
+    "next": "15.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.4.6"
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/fluent-ffmpeg": "^2.1.27",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.4.6",
-    "@eslint/eslintrc": "^3"
+    "i": "^0.3.7",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
