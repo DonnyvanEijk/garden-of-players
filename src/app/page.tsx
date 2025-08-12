@@ -266,6 +266,10 @@ const setupVisualizer = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-[#ff6f00] via-[#ff9800] to-[#d84315] text-white p-6">
+      <nav className="flex items-center gap-3 px-6 py-4 bg-black rounded-xl bg-opacity-40  top-0 left-10 z-50 shadow-md">
+   
+        <h1 className="text-xl font-bold select-none text-center">Garden of Beats<br/>(VS ADAR)</h1>
+      </nav>
       <div className="relative mt-20 mb-20">
         <canvas
           ref={canvasRef}
