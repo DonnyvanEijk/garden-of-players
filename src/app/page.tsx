@@ -195,7 +195,8 @@ const setupVisualizer = () => {
   if (!audioRef.current) return;
 
   if (!audioCtxRef.current) {
-    audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+    //@ts-expect-error it works
+    audioCtxRef.current = new (window.AudioContext || (window).webkitAudioContext)();
   }
 
   const audioCtx = audioCtxRef.current;
