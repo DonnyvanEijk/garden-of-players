@@ -195,28 +195,29 @@ const setupVisualizer = () => {
   if (!audioRef.current) return;
 
   if (!audioCtxRef.current) {
-    //@ts-expect-error it works
-    audioCtxRef.current = new (window.AudioContext || (window).webkitAudioContext)();
+    //@ts-expect-error works in browsers
+    audioCtxRef.current = new (window.AudioContext || window.webkitAudioContext)();
   }
 
   const audioCtx = audioCtxRef.current;
 
   if (!sourceRef.current) {
     sourceRef.current = audioCtx.createMediaElementSource(audioRef.current);
+
+    // Only connect once
+    const analyser = audioCtx.createAnalyser();
+    analyser.fftSize = 128;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    sourceRef.current.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    analyserRef.current = analyser;
+    dataArrayRef.current = dataArray;
   }
-
-  const analyser = audioCtx.createAnalyser();
-  analyser.fftSize = 128;
-  const bufferLength = analyser.frequencyBinCount;
-  const dataArray = new Uint8Array(bufferLength);
-
-  // Connect nodes
-  sourceRef.current.connect(analyser);
-  analyser.connect(audioCtx.destination);
-
-  analyserRef.current = analyser;
-  dataArrayRef.current = dataArray;
 };
+
 
 
   // Drawing the spiky visualizer around the circle
