@@ -290,8 +290,8 @@ const setupVisualizer = () => {
             <Image
               src={currentTrack.cover}
               alt={currentTrack.title}
-              width={ isMobile ? 64 : 128}
-              height={isMobile ? 64 : 128}
+              width={ isMobile ? 150 : 220}
+              height={isMobile ? 150 : 220}
               className="rounded-full object-cover"
               onError={() => {
                 failedCovers.current.add(currentTrack.cover);
