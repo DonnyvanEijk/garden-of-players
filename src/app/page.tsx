@@ -125,6 +125,16 @@ export default function HomePage() {
     };
   }, [isPlaying]);
 
+useEffect(() => {
+  if (isPlaying && currentTrack) {
+    document.title = `Now playing: ${formatSongTitle(currentTrack.title).name}`;
+  } else {
+    document.title = "Garden of Beats (VS ADAR)";
+  }
+}, [isPlaying, currentTrack]);
+
+
+
   const togglePlay = useCallback(() => {
     if (!audioRef.current) return;
     if (isPlaying) {
