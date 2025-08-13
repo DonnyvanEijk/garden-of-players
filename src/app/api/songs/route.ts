@@ -14,6 +14,8 @@ const coverMap: Record<string, string> = {
   "13": "/covers/bot.png",
   "14": "/covers/bot.png",
   "15": "/covers/bot.png",
+  "10": "/covers/blaza.png",
+  "20": "/covers/blaza_result.png",
   "garden_theme": "/covers/garden_theme.jpg",
 };
 
