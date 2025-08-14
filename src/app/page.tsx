@@ -8,6 +8,7 @@ import {
   SkipForward,
   RotateCcw,
   Volume2,
+  LoaderCircle,
 } from "lucide-react";
 import Image from "next/image";
 import { useIsMobile } from "@/hooks/useIsMobile";
@@ -273,16 +274,16 @@ const setupVisualizer = () => {
    const currentSongTitle = currentTrack ? formatSongTitle(currentTrack.title).name : "";
 
   if (tracks.length === 0) {
-    return <div className="text-white p-10">Loading songs...</div>;
+    return <div className="text-orange-100 min-h-screen p-10 font-bold flex justify-center items-center flex-col gap-3 text-3xl">Loading songs... <LoaderCircle className="animate-spin" width={100} height={100}/> </div>;
   }
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gradient-to-br from-[#ff6f00] via-[#ff9800] to-[#d84315] text-white p-6">
+    <div className="flex flex-col items-center  text-white p-6">
       <nav className="flex items-center gap-3 px-6 py-4 bg-black rounded-xl bg-opacity-40  top-0 left-10 z-50 shadow-md">
    
-        <h1 className="text-xl font-bold select-none text-center">Garden of Beats<br/>(VS ADAR)</h1>
+        <h1 className="text-xl select-none text-center font-light">Garden of Beats<br/><span className="font-bold text-2xl">(VS ADAR)</span></h1>
       </nav>
-      <div className="relative mt-20 mb-20">
+      <div className="relative mt-20 lg:mb-17 mb-25">
         <canvas
           ref={canvasRef}
           width={400}
@@ -332,7 +333,7 @@ const setupVisualizer = () => {
         <p>By GreenBean</p>
 
       {/* Controls */}
-      <div className="flex gap-6 mt-8 items-center">
+      <div className="flex gap-6 mt-8 items-center bg-orange-300 px-6 py-4 rounded-full shadow-lg">
         <button
           onClick={skipBack}
           className="p-3 rounded-full bg-[#ffcc80] hover:bg-[#ff9800] transition-colors cursor-pointer"
@@ -360,7 +361,7 @@ const setupVisualizer = () => {
           className={`p-3 rounded-full transition-colors cursor-pointer ${
             isLooping
               ? "bg-[#d84315]"
-              : "bg-[#ffcc80] hover:bg-[#ff9800]"
+              : "bg-orange-400 hover:bg-[#ff9800]"
           }`}
         >
           <RotateCcw size={28} className="text-white" />
@@ -368,8 +369,9 @@ const setupVisualizer = () => {
       </div>
 
       {/* Progress */}
+      <div className="flex flex-col items-center mt-6 bg-orange-300 px-6 py-4 rounded-xl shadow-lg text-[#d84315]">
       <div className="flex items-center gap-3 mt-6 w-64">
-        <span className="text-xs text-white font-mono w-10 text-right">
+        <span className="text-xs  font-mono w-10 text-right font-semibold">
           {formatTime(isSeeking ? seekValue : currentTime)}
         </span>
         <input
@@ -383,14 +385,14 @@ const setupVisualizer = () => {
           onTouchEnd={handleSeekCommit}
           className="w-full accent-[#ff9800]"
         />
-        <span className="text-xs text-white font-mono w-10 text-left">
+        <span className="text-xs  font-mono w-10 text-left font-semibold">
           {formatTime(duration)}
         </span>
       </div>
 
       {/* Volume */}
       <div className="flex items-center gap-3 mt-6 w-64">
-        <Volume2 size={24} className="text-[#ffcc80]" />
+        <Volume2 size={24} className="text-[#d84315]" />
         <input
           type="range"
           min={0}
@@ -400,14 +402,16 @@ const setupVisualizer = () => {
           onChange={(e) => setVolume(Number(e.target.value))}
           className="w-full accent-[#ff9800]"
         />
-        <span className="text-sm text-white font-mono w-10 text-right">
+        <span className="text-sm  font-mono w-10 text-right font-bold">
           {Math.round(volume * 100)}%
         </span>
       </div>
+            </div>
 
       {/* Queue */}
-     <div className="mt-10 w-full max-w-lg">
-        <h2 className="text-xl font-bold mb-4 text-white">Queue</h2>
+     <div className="mt-10 w-full max-w-lg bg-orange-300 p-6 rounded-xl shadow-lg">
+        <h2 className="text-xl font-bold  text-[#d84315] text-center">Queue</h2>
+        <p className="text-[#d84315] mb-4 text-center">{tracks.length} tracks are avaiable</p>
         <ul
           className="
       space-y-2 
@@ -415,7 +419,7 @@ const setupVisualizer = () => {
       overflow-y-auto 
       px-5
       scrollbar-thin scrollbar-thumb-[#ff9800] scrollbar-track-[#d84315]
-      sm:max-h-80
+      sm:max-h-65
     "
         >
           {tracks.map((track, idx) => {
@@ -430,7 +434,7 @@ const setupVisualizer = () => {
             p-3 rounded-md flex items-center justify-between transition-all duration-200
             ${
               isActive
-                ? "bg-[#ffcc80] text-[#d84315] font-bold scale-[1.05] shadow-lg shadow-[#ff9800]/50 border-2 border-[#ff9800]"
+                ? "bg-orange-200 text-[#d84315] font-bold scale-[1.05] shadow-lg shadow-[#ff9800]/50 border-2 border-amber-400"
                 : "bg-[#d84315] text-white hover:bg-[#ff5722] cursor-pointer"
             }
           `}
