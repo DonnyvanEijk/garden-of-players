@@ -6,6 +6,10 @@ import fs from "fs";
 const coverMap: Record<string, string> = {
   "09": "/covers/opposition.png",
   "19": "/covers/opposition.png",
+  "01": "/covers/scalding.png",
+  "11": "/covers/scalding.png",
+  "02": "/covers/emblazoned.png",
+  "12": "/covers/emblazoned.png",
   "06": "/covers/hole.png",
   "16": "/covers/hole.png",
   "03": "/covers/bot.png",
